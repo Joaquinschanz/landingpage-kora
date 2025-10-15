@@ -72,8 +72,8 @@ export default function LandingPage() {
           </h2>
 
           <p>
-            We transform your team’s know-how into an intelligent, automated
-            onboarding experience — so every new hire starts right.
+            We transform your team’s know-how into an intelligent, automated 
+            onboarding experience — so every new hire becomes productive from day one.
           </p>
           <button className="btn-primary" onClick={() => setModalOpen(true)}>
             Get in touch
@@ -240,11 +240,13 @@ export default function LandingPage() {
                 src={`/${card.name.toLowerCase()}_blue.png`}
                 alt={card.name}
                 className="solution-icon blue-icon"
+                loading="lazy"
               />
               <img
                 src={`/${card.name.toLowerCase()}_white.png`}
                 alt={`${card.name} white`}
                 className="solution-icon white-icon"
+                loading="lazy"
               />
               <h5>{card.name}</h5>
               <p>{card.text}</p>
@@ -295,7 +297,7 @@ export default function LandingPage() {
               key={item.title}
               style={{ backgroundColor: item.color }}
             >
-              <img src={item.icon} alt={item.title} className="service-icon" />
+              <img src={item.icon} alt={item.title} className="service-icon" loading="lazy" />
               <h5>{item.title}</h5>
               <p>{item.desc}</p>
             </div>
@@ -322,6 +324,7 @@ export default function LandingPage() {
                 src={`/${logo}`}
                 alt={`Brand ${i + 1}`}
                 className="brand-logo"
+                loading="lazy"
               />
             ))}
 
@@ -335,6 +338,7 @@ export default function LandingPage() {
                     src={`/${logo}`}
                     alt={`Brand duplicate ${i + 1}`}
                     className="brand-logo"
+                    loading="lazy" 
                   />
                 ))
               )}
@@ -376,7 +380,7 @@ export default function LandingPage() {
                 variants={fadeUp}
                 transition={{ delay: idx * 0.1 }}
               >
-                <img src={member.img} alt={member.name} className="team-photo" />
+                <img src={member.img} alt={member.name} className="team-photo" loading="lazy" />
                 <div className="overlay">
                   <h4>{member.name}</h4>
                   <p>{member.role}</p>
