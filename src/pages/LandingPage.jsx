@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import "./LandingPage.css";
-import { Mail, Linkedin, Instagram } from "lucide-react";
+import { Mail, Linkedin, Instagram, Menu, X } from "lucide-react";
 import CountUp from "react-countup";
 import { useInView } from "react-intersection-observer";
 import { motion } from "framer-motion";
@@ -29,20 +29,31 @@ export default function LandingPage() {
   const [modalOpen, setModalOpen] = useState(false);
   const [formSent, setFormSent] = useState(false);
   const [loading, setLoading] = useState(false);
-
+  const [menuOpen, setMenuOpen] = useState(false);
 
   return (
     <div className="landing-container">
       {/* NAVBAR */}
       <header className="navbar">
         <img src="/Logos-Kora-color.png" alt="KORA logo" className="logo-img" />
-        <nav className="nav-links">
-          <a href="#problem">Problem</a>
-          <a href="#solution">Solution</a>
-          <a href="#service-model">Service Model</a>
-          <a href="#brands">Trusted By</a>
-          <a href="#team">Team</a>
-          <a href="#contact">Contact</a>
+
+        {/* Botón hamburguesa */}
+        <button
+          className="menu-toggle"
+          onClick={() => setMenuOpen(!menuOpen)}
+          aria-label="Toggle menu"
+        >
+          {menuOpen ? <X size={28} /> : <Menu size={28} />}
+        </button>
+
+        {/* Links de navegación */}
+        <nav className={`nav-links ${menuOpen ? "open" : ""}`}>
+          <a href="#problem" onClick={() => setMenuOpen(false)}>Problem</a>
+          <a href="#solution" onClick={() => setMenuOpen(false)}>Solution</a>
+          <a href="#service-model" onClick={() => setMenuOpen(false)}>Service Model</a>
+          <a href="#brands" onClick={() => setMenuOpen(false)}>Trusted By</a>
+          <a href="#team" onClick={() => setMenuOpen(false)}>Team</a>
+          <a href="#contact" onClick={() => setMenuOpen(false)}>Contact</a>
         </nav>
       </header>
 
@@ -69,7 +80,7 @@ export default function LandingPage() {
           </button>
         </motion.div>
 
-        {/* 🔹 Animación Lottie */}
+        {/* Animación Lottie */}
         <div className="hero-animation">
           <lottie-player
             src="/Technology.json"
@@ -80,7 +91,7 @@ export default function LandingPage() {
           ></lottie-player>
         </div>
 
-        {/* 🔹 Modal de contacto */}
+        {/* Modal de contacto */}
         {modalOpen && (
           <div className="modal-overlay" onClick={() => setModalOpen(false)}>
             <motion.div
@@ -97,7 +108,7 @@ export default function LandingPage() {
                 <form
                   onSubmit={async (e) => {
                     e.preventDefault();
-                    setLoading(true); // ⏳ empieza a cargar
+                    setLoading(true);
 
                     const formData = {
                       name: e.target.name.value,
@@ -114,13 +125,12 @@ export default function LandingPage() {
                           mode: "no-cors",
                         }
                       );
-
                       setFormSent(true);
                       e.target.reset();
-                    } catch (err) {
+                    } catch {
                       alert("⚠️ There was a problem sending your message.");
                     } finally {
-                      setLoading(false); // ✅ deja de cargar, pase lo que pase
+                      setLoading(false);
                     }
                   }}
                 >
@@ -134,13 +144,8 @@ export default function LandingPage() {
                     required
                   ></textarea>
 
-
                   <button type="submit" className="btn-primary" disabled={loading}>
-                    {loading ? (
-                        <span className="spinner"></span>
-                      ) : (
-                        "Send Message"
-                      )}
+                    {loading ? <span className="spinner"></span> : "Send Message"}
                   </button>
                 </form>
               ) : (
@@ -225,9 +230,9 @@ export default function LandingPage() {
         {/* MITAD DERECHA */}
         <div className="solution-right">
           {[
+            { name: "Observe", text: "Captures real workflows securely and automatically." },
             { name: "Analyze", text: "AI identifies key knowledge, processes and best practices." },
             { name: "Document", text: "Builds a living, searchable knowledge base." },
-            { name: "Observe", text: "Captures real workflows securely and automatically." },
             { name: "Coach", text: "Provides real-time pop-ups and contextual guidance." },
           ].map((card) => (
             <div className="solution-card" key={card.name}>

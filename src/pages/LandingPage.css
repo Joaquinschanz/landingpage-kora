@@ -15,7 +15,9 @@ html, body {
   box-sizing: border-box;
 }
 
-/* NAVBAR */
+/* ============================================================
+   🔹 NAVBAR + MENÚ RESPONSIVE
+============================================================ */
 .navbar {
   display: flex;
   justify-content: space-between;
@@ -36,9 +38,11 @@ html, body {
   object-fit: contain;
 }
 
+/* 🔹 Links normales (desktop) */
 .nav-links {
   display: flex;
   gap: 2rem;
+  transition: all 0.3s ease;
 }
 
 .nav-links a {
@@ -49,6 +53,75 @@ html, body {
 
 .nav-links a:hover {
   color: #00a7e7;
+}
+
+/* 🔹 Botón hamburguesa (oculto en desktop) */
+.menu-toggle {
+  display: none;
+  background: none;
+  border: none;
+  font-size: 1.8rem;
+  color: #013459;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+}
+
+.menu-toggle:hover {
+  transform: scale(1.1);
+}
+
+/* ============================================================
+   📱 Responsive Navbar para móviles
+============================================================ */
+@media (max-width: 768px) {
+  .navbar {
+    flex-wrap: wrap;
+    justify-content: space-between;
+    padding: 0.8rem 1.5rem;
+  }
+
+  .menu-toggle {
+    display: block;
+    z-index: 101;
+  }
+
+  .nav-links {
+    display: none;
+    flex-direction: column;
+    width: 100%;
+    text-align: center;
+    background: white;
+    border-radius: 0 0 18px 18px;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+    margin-top: 0.5rem;
+    padding: 1rem 0;
+    animation: dropdownFade 0.3s ease forwards;
+  }
+
+  .nav-links.open {
+    display: flex;
+  }
+
+  .nav-links a {
+    padding: 0.8rem 0;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+  }
+
+  .nav-links a:last-child {
+    border-bottom: none;
+  }
+}
+
+/* Animación sutil al desplegar */
+@keyframes dropdownFade {
+  from {
+    opacity: 0;
+    transform: translateY(-8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 /* HERO */
