@@ -423,7 +423,7 @@ export default function LandingPage() {
         </motion.button>
         <div className="social-icons">
           <motion.a
-            href="https://www.linkedin.com/company/kora-onboarding/"
+            href="https://www.linkedin.com/company/kora-onboarding/?viewAsMember=true"
             target="_blank"
             rel="noreferrer"
             whileHover={{ scale: 1.1 }}
@@ -446,7 +446,7 @@ export default function LandingPage() {
 
       {/* FOOTER */}
       <footer className="footer">
-        © {new Date().getFullYear()} KORA — Integra. Comparte. Escala.
+        © {new Date().getFullYear()} KORA — Integrate. Share. Scale.
       </footer>
     </div>
   );
