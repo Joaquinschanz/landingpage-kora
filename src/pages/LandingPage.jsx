@@ -438,7 +438,7 @@ export default function LandingPage() {
           >
             <Instagram size={28} />
           </motion.a>
-          <motion.a href="mailto:hello@koraplatform.com" whileHover={{ scale: 1.1 }}>
+          <motion.a href="https://mail.google.com/mail/?view=cm&to=koraonboarding@gmail.com" whileHover={{ scale: 1.1 }}>
             <Mail size={28} />
           </motion.a>
         </div>
