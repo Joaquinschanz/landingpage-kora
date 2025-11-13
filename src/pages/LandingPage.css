@@ -70,48 +70,6 @@ html, body {
   transform: scale(1.1);
 }
 
-/* ============================================================
-   📱 Responsive Navbar para móviles
-============================================================ */
-@media (max-width: 768px) {
-  .navbar {
-    flex-wrap: wrap;
-    justify-content: space-between;
-    padding: 0.8rem 1.5rem;
-  }
-
-  .menu-toggle {
-    display: block;
-    z-index: 101;
-  }
-
-  .nav-links {
-    display: none;
-    flex-direction: column;
-    width: 100%;
-    text-align: center;
-    background: white;
-    border-radius: 0 0 18px 18px;
-    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
-    margin-top: 0.5rem;
-    padding: 1rem 0;
-    animation: dropdownFade 0.3s ease forwards;
-  }
-
-  .nav-links.open {
-    display: flex;
-  }
-
-  .nav-links a {
-    padding: 0.8rem 0;
-    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
-  }
-
-  .nav-links a:last-child {
-    border-bottom: none;
-  }
-}
-
 /* Animación sutil al desplegar */
 @keyframes dropdownFade {
   from {
@@ -313,16 +271,16 @@ html, body {
 }
 
 .solution-left .quote {
-  background: #f4f8fb;
+  background: transparent;
   color: #013459;
   font-style: italic;
-  border-left: 4px solid #00a7e7;
-  padding: 1rem 1.5rem;
-  border-radius: 12px;
+  border: 2px solid #00a7e7;
+  border-radius: 14px;
+  padding: 1.5rem 2rem;
   font-size: 1rem;
   max-width: 450px;
   line-height: 1.6;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+  margin-bottom: 2rem;
 }
 
 /* MITAD DERECHA — GRID de tarjetas (2x2) */
@@ -751,7 +709,7 @@ html, body {
   margin: 0 auto 3rem;
 }
 
-/* ✅ Cards de colores planos */
+/* === Cards === */
 .service-cards {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
@@ -762,33 +720,49 @@ html, body {
 .service-card {
   color: white;
   border-radius: 1.8rem;
-  padding: 3rem 2rem 2.5rem;
+  padding: 4rem 2rem 3.5rem;
   box-shadow: 0 6px 18px rgba(0, 0, 0, 0.12);
   width: 100%;
-  max-width: 350px;
-  height: 400px; /* mismo alto para todas */
+  max-width: 360px;
+  height: 520px;
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center; /* centramos ícono y texto */
+  justify-content: space-between; /* 🔹 asegura que el contenido se distribuya */
   transition: transform 0.3s ease;
 }
 
-.service-card:hover {
-  transform: translateY(-4px);
+.service-card .btn-outline {
+  margin-top: auto; /* 🔹 empuja el botón hacia el fondo */
+  align-self: center;
 }
 
-/* Íconos representativos */
+.service-card:hover {
+  transform: translateY(-6px);
+}
+
+/* === Colores por tipo === */
+.service-card.small {
+  background-color: #00a7e7; /* azul claro */
+}
+
+.service-card.medium {
+  background-color: #0072b1; /* azul medio */
+}
+
+.service-card.large {
+  background-color: #013459; /* azul oscuro */
+}
+
+/* Íconos */
 .service-icon {
-  width: 80px;               /* antes 60px */
+  width: 80px;
   height: 80px;
   display: block;
-  margin: 0 auto 1.8rem;     /* centra horizontalmente */
+  margin: 0 auto 1.8rem;
   object-fit: contain;
-  filter: brightness(100%);
 }
 
-/* Textos */
 .service-card h5 {
   font-size: 1.2rem;
   font-weight: 700;
@@ -801,6 +775,65 @@ html, body {
   line-height: 1.6;
   text-align: center;
   max-width: 90%;
+  margin-bottom: 1.2rem;
+}
+
+/* === Price Tag === */
+.price-tag {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin: 0.8rem 0 1rem;
+  line-height: 1.1;
+  text-align: center;
+}
+
+/* Número principal */
+.price-tag .amount {
+  font-size: 2.8rem;
+  font-weight: 900;
+  color: #fff;
+  letter-spacing: -0.5px;
+  margin-bottom: 0.3rem;
+}
+
+/* Texto secundario */
+.price-tag .period {
+  font-size: 1rem;
+  font-weight: 400;
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.price-tag .period b {
+  font-weight: 700;
+  color: #fff;
+}
+
+.service-card:hover .price-tag {
+  transform: scale(1.08);
+  opacity: 0.95;
+}
+
+.btn-outline {
+  background: transparent;
+  border: 2px solid rgba(255, 255, 255, 0.9);
+  color: #fff;
+  padding: 0.7rem 2.5rem; /* 🔹 más ancho */
+  border-radius: 50px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  margin-top: 1.2rem;
+  transition: all 0.3s ease;
+  width: 80%; /* 🔹 más presencia horizontal */
+  text-align: center;
+}
+
+.btn-outline:hover {
+  background: rgba(255, 255, 255, 0.15);
+  border-color: #fff;
+  transform: scale(1.05);
 }
 
 /* 🔹 BRANDS / PARTNERS SECTION */
@@ -883,99 +916,141 @@ html, body {
   background: linear-gradient(to left, white 40%, transparent 100%);
 }
 
-/* ===========================================================
-   📱 RESPONSIVE DESIGN
-=========================================================== */
+/* 🌐 PANTALLAS MENORES A 1025px */
+@media (max-width: 1025px) {
 
-/* 🌐 TABLETS (pantallas medianas) */
-@media (max-width: 1024px) {
+  /* 🟦 NAVBAR */
   .navbar {
-    flex-direction: column;
-    padding: 1rem 2rem;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    padding: 0.8rem 1.5rem;
+  }
+
+  .menu-toggle {
+    display: block;
+    z-index: 101;
   }
 
   .nav-links {
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 1.2rem;
+    display: none;
+    flex-direction: column;
+    width: 100%;
+    text-align: center;
+    background: white;
+    border-radius: 0 0 18px 18px;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+    margin-top: 0.5rem;
+    padding: 1rem 0;
+    animation: dropdownFade 0.3s ease forwards;
   }
 
+  .nav-links.open {
+    display: flex;
+  }
+
+  .nav-links a {
+    padding: 0.8rem 0;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+  }
+
+  .nav-links a:last-child {
+    border-bottom: none;
+  }
+
+
+  /* 🟦 HERO */
   .hero {
     flex-direction: column;
     text-align: center;
     padding: 5rem 2rem;
+    align-items: center;
+    justify-content: center;
   }
 
   .hero-content {
     max-width: 90%;
+    margin: 0 auto;
+    order: 1;
   }
 
-  .hero-animation {
-    position: relative;
-    width: 70%;
-    margin-top: 3rem;
-  }
-
-  .solution-section {
-    flex-direction: column;
-    align-items: center;
-    padding: 3rem 2rem;
-  }
-
-  .solution-left {
-    text-align: center;
-  }
-
-  .solution-right {
-    grid-template-columns: 1fr 1fr;
-    width: 100%;
-  }
-
-  .team-container {
-    flex-direction: column;
-    align-items: center;
-  }
-
-  .team-text {
-    text-align: center;
-    margin-bottom: 2rem;
-  }
-
-  .team-photos {
-    grid-template-columns: repeat(3, 1fr);
-  }
-
-  .service-cards {
-    grid-template-columns: repeat(2, 1fr);
-  }
-
-  .brands-slider {
-    animation-duration: 35s; /* más lenta en pantallas medianas */
-  }
-}
-
-/* 📱 TABLETS PEQUEÑAS Y CELULARES GRANDES */
-@media (max-width: 768px) {
   .hero h2 {
     font-size: 2.2rem;
   }
 
   .hero p {
     font-size: 1rem;
+    max-width: 90%;
     margin: 1rem auto 2rem;
   }
 
-  .btn-primary {
-    padding: 0.8rem 1.6rem;
-    font-size: 0.95rem;
+  /* 🟦 BOTONES MÁS ANCHOS (matching Buy Now) */
+  .btn-primary,
+  .contact-section .btn-primary,
+  .contact-modal .btn-primary {
+    width: 90% !important;
+    max-width: 600px !important;
+    margin: 0 auto !important;
+    display: block;
+    text-align: center;
   }
 
+  .hero-animation {
+    position: relative;
+    width: 80%;
+    max-width: 380px;
+    margin: 2rem auto 0;
+    height: auto;
+    order: 3;
+  }
+
+
+  /* 🟦 CARDS MÁS ANCHAS EN TODAS LAS SECCIONES */
+  .problem-card,
+  .solution-card,
+  .service-card {
+    width: 95% !important;
+    max-width: 750px !important;
+    margin: 0 auto !important;
+  }
+
+
+  /* 🟦 PROBLEM */
   .problem-grid {
     grid-template-columns: 1fr;
   }
 
+
+  /* 🟦 SOLUTION */
+  .solution-section {
+    flex-direction: column;
+    align-items: center;
+    padding: 3rem 1rem;
+    width: 95%;
+    max-width: 1300px;
+    margin: 0 auto;
+  }
+
+  .solution-left {
+    text-align: center;
+  }
+
+  /* QUOTE NUEVO */
+  .solution-left .quote {
+    width: 95% !important;
+    max-width: 750px !important;
+    margin: 0 auto 2rem;
+    border: 2px solid #0095d0;
+    border-radius: 16px;
+    padding: 1.5rem 1.2rem;
+    background: none !important;
+    color: #013459;
+    text-align: center;
+  }
+
   .solution-right {
-    grid-template-columns: 1fr;
+    grid-template-columns: 1fr !important;
+    width: 100%;
+    justify-items: center;
   }
 
   .solution-card {
@@ -983,65 +1058,10 @@ html, body {
     padding: 4rem 1rem 2rem;
   }
 
+
+  /* 🟦 SERVICE MODEL */
   .service-cards {
     grid-template-columns: 1fr;
-  }
-
-  .brand-logo {
-    height: 50px;
-  }
-
-  .team-photos {
-    grid-template-columns: repeat(2, 1fr);
-  }
-
-  .team-photo-card {
-    width: 120px;
-    height: 120px;
-  }
-
-  .contact-section {
-    padding: 2rem 1.5rem 4rem;
-  }
-}
-
-/* 📲 CELULARES (pantallas pequeñas) */
-@media (max-width: 480px) {
-  .navbar {
-    padding: 0.8rem 1rem;
-  }
-
-  .logo-img {
-    height: 38px;
-  }
-
-  .nav-links {
-    flex-direction: column;
-    gap: 0.8rem;
-  }
-
-  .hero {
-    padding: 4rem 1rem;
-  }
-
-  .hero-content {
-    max-width: 100%;
-  }
-
-  .hero h2 {
-    font-size: 1.9rem;
-  }
-
-  .solution-left h4 {
-    font-size: 1.1rem;
-  }
-
-  .solution-card h5 {
-    font-size: 1rem;
-  }
-
-  .solution-card p {
-    font-size: 0.9rem;
   }
 
   .service-card {
@@ -1054,10 +1074,94 @@ html, body {
     height: 60px;
   }
 
+
+  /* 🟦 TEAM */
+  .team-container {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .team-text {
+    text-align: center;
+    margin-bottom: 2rem;
+  }
+
+  .team-photos {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .team-photo-card {
+    width: 120px;
+    height: 120px;
+  }
+
+
+  /* 🟦 CONTACT */
+  .contact-section {
+    padding: 2rem 1.5rem 4rem;
+  }
+
+
+  /* 🟦 BRANDS */
+  .brand-logo {
+    height: 50px;
+  }
+}
+
+/* 📲 PANTALLAS MENORES A 480px */
+@media (max-width: 480px) {
+
+  /* NAVBAR */
+  .navbar {
+    padding: 0.8rem 1rem;
+  }
+
+  .logo-img {
+    height: 38px;
+  }
+
+  /* HERO */
+  .hero {
+    padding: 4rem 1rem;
+  }
+
+  .hero-content {
+    max-width: 100%;
+  }
+
+  .hero h2 {
+    font-size: 1.9rem;
+  }
+
+  /* SOLUTION */
+  .solution-left h4 {
+    font-size: 1.1rem;
+  }
+
+  .solution-card h5 {
+    font-size: 1rem;
+  }
+
+  .solution-card p {
+    font-size: 0.9rem;
+  }
+
+  /* SERVICE */
+  .service-card {
+    height: auto;
+    padding: 2.5rem 1.2rem;
+  }
+
+  .service-icon {
+    width: 50px;
+    height: 50px;
+  }
+
   .brand-logo {
     height: 40px;
   }
 
+  /* TEAM */
   .team-photos {
     grid-template-columns: 1fr 1fr;
     gap: 1.2rem;
@@ -1068,10 +1172,12 @@ html, body {
     height: 100px;
   }
 
+  /* CONTACT */
   .contact-section p {
     font-size: 0.9rem;
   }
 
+  /* FOOTER */
   .footer {
     font-size: 0.8rem;
     padding: 0.8rem;

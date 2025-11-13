@@ -185,7 +185,7 @@ export default function LandingPage() {
       >
         <h3>The Problem</h3>
         <div className="problem-grid">
-          {[70, 60, 5].map((val, i) => (
+          {[45, 60, 5].map((val, i) => (
             <motion.div
               key={i}
               className="problem-card"
@@ -273,33 +273,25 @@ export default function LandingPage() {
 
         <div className="service-cards">
           {[
-            { 
-              title: "Small Teams", 
-              desc: "Simple setup, fast onboarding.",
-              color: "#00a7e7", // azul claro
-              icon: "/small.png" 
-            },
-            { 
-              title: "Growing Teams", 
-              desc: "Guided knowledge capture & insights.",
-              color: "#0072b1", // azul medio
-              icon: "/medium.png" 
-            },
-            { 
-              title: "Large Organizations", 
-              desc: "Advanced automation & analytics.",
-              color: "#013459", // azul oscuro
-              icon: "/large.png" 
-            },
+            { title: "Small Teams", desc: "Simple setup, fast onboarding.", icon: "/small.png", tier: "small", price: "$5" },
+            { title: "Growing Teams", desc: "Guided knowledge capture & insights.", icon: "/medium.png", tier: "medium", price: "$10" },
+            { title: "Large Organizations", desc: "Advanced automation & analytics.", icon: "/large.png", tier: "large", price: "$15" },
           ].map((item) => (
-            <div
-              className="service-card"
-              key={item.title}
-              style={{ backgroundColor: item.color }}
-            >
+            <div className={`service-card ${item.tier}`} key={item.title}>
               <img src={item.icon} alt={item.title} className="service-icon" loading="lazy" />
-              <h5>{item.title}</h5>
+              <div className="price-tag">
+                <span className="amount">{item.price.split(" ")[0]}</span>
+                <span className="period">
+                  / employee monthly for <b>{item.title.toLowerCase()}</b>
+                </span>
+              </div>
               <p>{item.desc}</p>
+                <button 
+                  className="btn-outline" 
+                  onClick={() => setModalOpen(true)}
+                >
+                  Buy Now
+                </button>
             </div>
           ))}
         </div>
